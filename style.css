@@ -1,0 +1,11 @@
+th{
+    border: 1px solid black;
+    width: 10vw;
+    cursor: pointer;
+}
+[add]:hover{
+    background-color: green;
+}
+[remove]:hover{
+    background-color: red;  
+}
