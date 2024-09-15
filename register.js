@@ -192,4 +192,21 @@ function start(){
     adder.addEventListener("click",addColumn);
     head.appendChild(adder);*/
 }
+function store(){
+    let name = prompt("Wie soll das Script heißen?");
+    localStorage.setItem(name,editor.getValue());
+}
+function load(){
+    let auswahl = "\nAuswahl:";
+    for(let i = 0; i < localStorage.length; i++){
+        auswahl += "\n" + localStorage.key(i);
+    }
+    let name = prompt("Welches Script soll geladen werden?" + auswahl);
+    if(name == null){
+        return;
+    }
+    editor.setValue(localStorage.getItem(name));
+}
 document.getElementById("run").addEventListener("click",start);
+document.getElementById("store").addEventListener("click",store);
+document.getElementById("load").addEventListener("click",load);
