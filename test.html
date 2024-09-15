@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="RMS.js"></script>
+    <script defer>
+        let code = [
+            "load 1",
+            "add 2",
+            "END"
+        ];
+        let registers = [0,5,7];
+        let rms = new RMS({
+            code: `
+                load 1
+                add 2
+                END
+            `,
+            registers: registers,
+            storeResult: true,
+            addCommands: true
+        });
+        rms.run();
+        console.log(rms.result);
+    </script>
+</head>
+<body>
+</body>
+</html>
