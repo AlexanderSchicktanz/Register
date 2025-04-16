@@ -9,6 +9,8 @@ class RMS{
         this.storeResult = options.storeResult || false;
         this.registers = options.registers || new Array(10).fill(0);
         this.addCommands = options.addCommands || false;
+        this.commands = options.commands || [];
+        this.functions = options.functions || [];
     }
     execute(options){
         this.b = options.b || this.b;
@@ -116,6 +118,19 @@ class RMS{
                     this.b++;
                     break;
                 }
+                default:{
+                    let index = this.commands.indexOf(op);
+                    if(index != -1){
+                        let res = this.functions[index](this.b,registers,arg,line);
+                        if(res){
+                            this.b = res[0];
+                            this.registers = res[1];
+                        }
+                    }else{
+                        this.b++;
+                    }
+                    break;
+                }
             }
             this.addLine(displayedB,registers);
         }
@@ -127,5 +142,9 @@ class RMS{
                 this.result[this.result.length-1]=[this.line].concat(this.result[this.result.length-1]);
             }
         }
+    }
+    addCommand(op,func){
+        this.commands.push(op);
+        this.functions.push(func);
     }
 }

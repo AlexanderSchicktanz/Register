@@ -89,8 +89,8 @@ function interpret(lines, registersFirst) {
         let [op, ...args] = line.split(' ');
         let arg = args[0];
         let displayedB = b+1;
-        switch (op) {
-            case 'END':{
+        switch (op.toLowerCase()) {
+            case 'end':{
                 displayLine(displayedB,registers);
                 return;
             }
@@ -167,6 +167,11 @@ function interpret(lines, registersFirst) {
                     b = (Number(arg)-1);
                     break;
                 }
+                b++;
+                break;
+            }
+            default:{
+                console.log("Invalid instruction: " + line);
                 b++;
                 break;
             }

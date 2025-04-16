@@ -9,6 +9,9 @@
         let code = [
             "load 1",
             "add 2",
+            "push",
+            "cload 1",
+            "pop",
             "END"
         ];
         let registers = [0,5,7];
@@ -16,12 +19,26 @@
             code: `
                 load 1
                 add 2
+                push
+                cload 1
+                pop
                 END
             `,
             registers: registers,
             storeResult: true,
             addCommands: true
         });
+        let stack = [];
+        function push(){
+            stack.push(registers[0]);
+        }
+        function pop(b, registers){
+            let regs = registers;
+            regs[0] = stack.pop();
+            return [b+1,regs];
+        }
+        rms.addCommand("push",);
+        rms.addCommand("pop",);
         rms.run();
         console.log(rms.result);
     </script>
